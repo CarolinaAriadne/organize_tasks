@@ -1,0 +1,56 @@
+/* eslint-disable camelcase */
+const tasksService = require('../services/service');
+
+const getAllTasks = async (_req, res, next) => {
+  try {
+    const allTasks = await tasksService.getAllTasks();
+    return res.status(200).json(allTasks);
+  } catch (error) {
+    return next(error);
+  }
+};
+
+const getTaskById = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const task = await tasksService.getTaskById(id);
+    return res.status(200).json(task);
+  } catch (error) {
+    return next(error);
+  }
+};
+
+const createTask = async (req, res, next) => {
+  try {
+    const { name_task } = req.body;
+    const createdTask = await tasksService.createTask(name_task);
+    return res.status(200).json(createdTask);
+  } catch (error) {
+    return next(error);
+  }
+};
+
+const updateTask = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { name_task } = req.body;
+    const taskUpdated = await tasksService.updateTask(id, name_task);
+    return res.status(200).json(taskUpdated);
+  } catch (error) {
+    return next(error);
+  }
+};
+
+const deleteTask = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    await tasksService.deleteTask(id);
+    return res.status(204).end();
+  } catch (error) {
+    return next(error);
+  }
+};
+
+module.exports = {
+  getAllTasks, getTaskById, createTask, updateTask, deleteTask,
+};

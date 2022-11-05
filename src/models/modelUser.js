@@ -19,9 +19,15 @@ const getUserName = async (name_user) => {
 };
 
 const createUser = async (dados) => {
-  const query = "INSERT INTO OrganizeTasks.users (user_id, name_user, password, email) VALUES (?,?,?,?);";
-  const [response] = await connection.execute(query, [dados.name_username_user]);
-  return response.insertId;
+  const query =
+    "INSERT INTO OrganizeTasks.users (user_id, name_user, password, email) VALUES (?,?,?,?);";
+  const [response] = await connection.execute(query, [
+    dados.user_id,
+    dados.name_user,
+    dados.password,
+    dados.email,
+  ]);
+  return response;
 };
 
 module.exports = {

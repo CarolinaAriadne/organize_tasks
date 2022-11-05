@@ -1,8 +1,8 @@
-import { sign } from 'jsonwebtoken';
+const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 const jwtConfig = {
-    expiresIn = '100d',
+    expiresIn:'60d',
     algorithm: 'HS256',
 };
 

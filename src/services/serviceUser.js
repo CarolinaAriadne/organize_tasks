@@ -23,14 +23,14 @@ const getUserById = async (user_id) => {
   return userId;
 };
 
-const createUser = async (dados) => {
-  const nameUser = await userModel.getUserName(dados.name_user);
+const createUser = async (user_id, name_user, password, email) => {
+  const nameUser = await userModel.getUserName(name_user);
 
   if (nameUser.length > 0) {
     throw erroHandler(409, "User already exists");
   }
-  const getIdName = await userModel.createUser(dados.name_user);
-  const userCreated = { id: getIdName, };
+  const getIdUser = await userModel.createUser(dados);
+  const userCreated =  { user_id: getIdUser, };
   
 };
 

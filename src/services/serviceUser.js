@@ -23,19 +23,34 @@ const getUserById = async (user_id) => {
   return userId;
 };
 
-const createUser = async (user_id, name_user, password, email) => {
+const userLogin = async (email, password) => {
+  const user = await userModel.userLogin(email, password)
+
+  if (!user){
+    throw erroHandler(400, 'Invalid fields');
+  }
+
+  const returnToken = generateJwt.generateJwt(email)
+  return returnToken;
+}
+
+const createUser = async (name_user, password, email) => {
   const nameUser = await userModel.getUserName(name_user);
 
   if (nameUser.length > 0) {
     throw erroHandler(409, "User already exists");
   }
-  const getIdUser = await userModel.createUser(dados);
-  const userCreated =  { user_id: getIdUser, };
+  await userModel.createUser(name_user, password, email);
+
+  const returnToken = generateJwt.generateJwt(email)
+  return returnToken;
+  // const userCreated =  { user_id: getIdUser, };
   
 };
 
 module.exports = {
   getAllUsers,
   getUserById,
+  userLogin,
   createUser,
 };

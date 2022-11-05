@@ -4,11 +4,13 @@ const router = express.Router();
 const {
   getAllUsers,
   getUserById,
+  loginUser,
   createUser,
 } = require("../controllers/controllerUser");
 
 router.get("/users", getAllUsers);
 router.get("/users/:user_id", getUserById);
+router.post("/login", loginUser);
 router.post("/users", createUser);
 
 const {
@@ -26,3 +28,6 @@ router.put("/tasks/:id", updateTask);
 router.delete("/tasks/:id", deleteTask);
 
 module.exports = router;
+
+
+// joao@joao.com - joãosilva

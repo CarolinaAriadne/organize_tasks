@@ -18,21 +18,29 @@ const getUserName = async (name_user) => {
   return response;
 };
 
-const createUser = async (dados) => {
-  const query =
-    "INSERT INTO OrganizeTasks.users (user_id, name_user, password, email) VALUES (?,?,?,?);";
-  const [response] = await connection.execute(query, [
-    dados.user_id,
-    dados.name_user,
-    dados.password,
-    dados.email,
-  ]);
+const userLogin = async (email, password) => {
+  const query = "SELECT * FROM OrganizeTasks.users WHERE (email, password) = (?,?);";
+  const [response] = await connection.execute(query, [email,password]);
   return response;
+};
+
+const createUser = async (name_user, password, email) => {
+  const query =
+    "INSERT INTO OrganizeTasks.users (name_user, password, email) VALUES (?,?,?);";
+  const [response] = await connection.execute(query, [
+    name_user,
+    password,
+    email,
+  ]);
+  const { insertId: user_id} = response;
+  const newUser = { user_id, name_user, password, email};
+  return newUser;
 };
 
 module.exports = {
   getAllUsers,
   getUserById,
   getUserName,
+  userLogin,
   createUser,
 };

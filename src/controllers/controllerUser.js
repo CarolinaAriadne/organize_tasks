@@ -33,7 +33,6 @@ const loginUser = async (req, res, next) => {
 const createUser = async (req, res, next) => {
   try {
     const { name_user, password, email } = req.body;
-    // console.log(name_user, password, email);
     const createdUser = await serviceUsers.createUser(name_user, password, email);
     return res.status(200).json(createdUser);
   } catch (error) {
@@ -47,7 +46,3 @@ module.exports = {
   loginUser,
   createUser,
 };
-
-// router.post('/login', validateUserLogin, loginUser);
-// router.post('/user', verifyDisplayName, verifyEmail, verifyPassword, verifyImage, createUser);
-// router.get('/user', verifyToken, getUsers);

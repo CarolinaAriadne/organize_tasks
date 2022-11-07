@@ -44,7 +44,6 @@ const createUser = async (name_user, password, email) => {
 
   const returnToken = generateJwt.generateJwt(email)
   return returnToken;
-  // const userCreated =  { user_id: getIdUser, };
   
 };
 

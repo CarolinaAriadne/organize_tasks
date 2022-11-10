@@ -22,10 +22,10 @@ const getUserById = async (req, res, next) => {
 
 const loginUser = async (req, res, next) => {
   try {
-     const {email, password} = req.body;
-     const token = await serviceUsers.userLogin(email, password);
-     return res.status(200).json({token}); // testar sem objeto se der erro
-  }catch(error){
+    const { email, password } = req.body;
+    const token = await serviceUsers.userLogin(email, password);
+    return res.status(200).json({ token }); // testar sem objeto se der erro
+  } catch (error) {
     return next(error);
   }
 };
@@ -33,8 +33,24 @@ const loginUser = async (req, res, next) => {
 const createUser = async (req, res, next) => {
   try {
     const { name_user, password, email } = req.body;
-    const createdUser = await serviceUsers.createUser(name_user, password, email);
+    const createdUser = await serviceUsers.createUser(
+      name_user,
+      password,
+      email
+    );
+    console.log(createdUser, "createdUser controller");
     return res.status(200).json(createdUser);
+  } catch (error) {
+    return next(error);
+  }
+};
+
+const assignmentTask = async (req, res, next) => {
+  try {
+    const { user_id, task_id } = req.body;
+    console.log(user_id, task_id, "userid e taskid controller");
+    const createUserTask = await serviceUsers.assignmentTask(user_id, task_id);
+    return res.status(200).json(createUserTask);
   } catch (error) {
     return next(error);
   }
@@ -45,4 +61,5 @@ module.exports = {
   getUserById,
   loginUser,
   createUser,
+  assignmentTask,
 };

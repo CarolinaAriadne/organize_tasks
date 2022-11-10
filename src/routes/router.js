@@ -8,12 +8,14 @@ const {
   getUserById,
   loginUser,
   createUser,
+  assignmentTask 
 } = require("../controllers/controllerUser");
 
 router.get("/users", verifyToken, getAllUsers);
 router.get("/users/:user_id", verifyToken, getUserById);
 router.post("/login", loginUser);
 router.post("/users", createUser);
+router.post("/users-tasks", assignmentTask )
 
 const {
   getAllTasks,

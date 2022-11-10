@@ -47,9 +47,22 @@ const createUser = async (name_user, password, email) => {
   
 };
 
+const assignmentTask = async (user_id, task_id) => {
+  const verifyTaskUser = await userModel.assignmentTask(user_id, task_id);
+  console.log(verifyTaskUser, 'verify service');
+   if(verifyTaskUser){
+     throw erroHandler(409, 'Task already assigned to user')
+   }
+
+  const createUserTask =  await userModel.assignmentTaskUser(user_id, task_id)
+
+  return createUserTask
+};
+
 module.exports = {
   getAllUsers,
   getUserById,
   userLogin,
   createUser,
+  assignmentTask
 };

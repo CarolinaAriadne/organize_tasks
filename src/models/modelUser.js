@@ -19,8 +19,9 @@ const getUserName = async (name_user) => {
 };
 
 const userLogin = async (email, password) => {
-  const query = "SELECT * FROM OrganizeTasks.users WHERE (email, password) = (?,?);";
-  const [response] = await connection.execute(query, [email,password]);
+  const query =
+    "SELECT * FROM OrganizeTasks.users WHERE (email, password) = (?,?);";
+  const [response] = await connection.execute(query, [email, password]);
   return response;
 };
 
@@ -32,9 +33,27 @@ const createUser = async (name_user, password, email) => {
     password,
     email,
   ]);
-  const { insertId: user_id} = response;
-  const newUser = { user_id, name_user, password, email};
+  const { insertId: user_id } = response;
+  const newUser = { user_id, name_user, password, email };
   return newUser;
+};
+
+const assignmentTask = async (user_id, task_id) => {
+  const query = `SELECT users.user_id, tasks_users.task_id
+  FROM OrganizeTasks.users AS users
+  INNER JOIN OrganizeTasks.tasks_users AS tasks_users
+  ON users.user_id = tasks_users.user_id
+  WHERE (users.user_id, tasks_users.user_id) = (?,?);`
+  const [response] = await connection.execute(query, [user_id, task_id]);
+  console.log(response, 'response assignmentTask');
+  return response;
+};
+
+const assignmentTaskUser = async (user_id, task_id) => {
+  const query = "INSERT INTO OrganizeTasks.tasks_users (user_id, task_id) VALUES (?,?);";
+  const [response] = await connection.execute(query, [user_id, task_id]);
+  console.log(response, 'response assignmentTaskUser');
+  return response;
 };
 
 module.exports = {
@@ -43,4 +62,6 @@ module.exports = {
   getUserName,
   userLogin,
   createUser,
+  assignmentTask,
+  assignmentTaskUser,
 };

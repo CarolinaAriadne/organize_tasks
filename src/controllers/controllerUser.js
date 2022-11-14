@@ -3,7 +3,6 @@ const serviceUsers = require("../services/serviceUser");
 const getAllUsers = async (_req, res, next) => {
   try {
     const allUsers = await serviceUsers.getAllUsers();
-    // console.log(allUsers);
     return res.status(200).json(allUsers);
   } catch (error) {
     return next(error);
@@ -38,7 +37,6 @@ const createUser = async (req, res, next) => {
       password,
       email
     );
-    console.log(createdUser, "createdUser controller");
     return res.status(200).json(createdUser);
   } catch (error) {
     return next(error);
@@ -48,7 +46,6 @@ const createUser = async (req, res, next) => {
 const assignmentTask = async (req, res, next) => {
   try {
     const { user_id, task_id } = req.body;
-    console.log(user_id, task_id, "userid e taskid controller");
     const createUserTask = await serviceUsers.assignmentTask(user_id, task_id);
     return res.status(200).json(createUserTask);
   } catch (error) {

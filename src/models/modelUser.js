@@ -39,20 +39,18 @@ const createUser = async (name_user, password, email) => {
 };
 
 const assignmentTask = async (user_id, task_id) => {
-  const query = `SELECT users.user_id, tasks_users.task_id
+  const query = `
+  SELECT users.user_id, tasks_users.task_id
   FROM OrganizeTasks.users AS users
   INNER JOIN OrganizeTasks.tasks_users AS tasks_users
-  ON users.user_id = tasks_users.user_id
-  WHERE (users.user_id, tasks_users.user_id) = (?,?);`
+  ON users.user_id = ? AND tasks_users.user_id = ?;`
   const [response] = await connection.execute(query, [user_id, task_id]);
-  console.log(response, 'response assignmentTask');
-  return response;
+  return response
 };
 
 const assignmentTaskUser = async (user_id, task_id) => {
   const query = "INSERT INTO OrganizeTasks.tasks_users (user_id, task_id) VALUES (?,?);";
   const [response] = await connection.execute(query, [user_id, task_id]);
-  console.log(response, 'response assignmentTaskUser');
   return response;
 };
 

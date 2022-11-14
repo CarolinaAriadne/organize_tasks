@@ -1,5 +1,5 @@
 const userModel = require("../models/modelUser");
-const generateJwt = require('../utils/generateJWT');
+const generateJwt = require("../utils/generateJWT");
 
 const erroHandler = (status, message) => ({
   status,
@@ -24,15 +24,15 @@ const getUserById = async (user_id) => {
 };
 
 const userLogin = async (email, password) => {
-  const user = await userModel.userLogin(email, password)
+  const user = await userModel.userLogin(email, password);
 
-  if (!user){
-    throw erroHandler(400, 'Invalid fields');
+  if (!user) {
+    throw erroHandler(400, "Invalid fields");
   }
 
-  const returnToken = generateJwt.generateJwt(email)
+  const returnToken = generateJwt.generateJwt(email);
   return returnToken;
-}
+};
 
 const createUser = async (name_user, password, email) => {
   const nameUser = await userModel.getUserName(name_user);
@@ -42,21 +42,20 @@ const createUser = async (name_user, password, email) => {
   }
   await userModel.createUser(name_user, password, email);
 
-  const returnToken = generateJwt.generateJwt(email)
+  const returnToken = generateJwt.generateJwt(email);
   return returnToken;
-  
 };
 
 const assignmentTask = async (user_id, task_id) => {
   const verifyTaskUser = await userModel.assignmentTask(user_id, task_id);
-  console.log(verifyTaskUser, 'verify service');
-   if(verifyTaskUser){
-     throw erroHandler(409, 'Task already assigned to user')
-   }
 
-  const createUserTask =  await userModel.assignmentTaskUser(user_id, task_id)
+  if (verifyTaskUser.length) {
+    throw erroHandler(409, "Task already assigned to user");
+  }
 
-  return createUserTask
+  const createUserTask = await userModel.assignmentTaskUser(user_id, task_id);
+
+  return createUserTask;
 };
 
 module.exports = {
@@ -64,5 +63,5 @@ module.exports = {
   getUserById,
   userLogin,
   createUser,
-  assignmentTask
+  assignmentTask,
 };

@@ -18,5 +18,3 @@ const verifyToken = async (req, res, next) => {
 module.exports = {
   verifyToken,
 };
-
-// http://blog.thiagobelem.net/relacionamento-de-tabelas-no-mysql

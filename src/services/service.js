@@ -35,15 +35,15 @@ const createTask = async (name_task) => {
 };
 
 const updateTask = async (task_id, name_task) => {
-  const task = await taskModel.getTaskById(task_id);
+  const taskId = await taskModel.getTaskById(task_id);
 
-  if (task.length === 0) {
+  if (taskId.length === 0) {
     throw erroHandler(404, "Task not found");
   }
 
-  const taskId = await taskModel.updateTask(task_id, name_task);
-  const task2 = await taskModel.getTaskIdUp(taskId);
-  return task2;
+  const upTaskId = await taskModel.updateTask(task_id, name_task);
+  const getTaskUpdate = await taskModel.getTaskIdUp(upTaskId);
+  return getTaskUpdate
 };
 
 const deleteTask = async (task_id) => {

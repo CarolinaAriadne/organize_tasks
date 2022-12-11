@@ -33,7 +33,7 @@ const updateTask = async (req, res, next) => {
   try {
     const { id } = req.params;
     const { name_task } = req.body;
-    const taskUpdated = await serviceTask.createTask(id, name_task);
+    const taskUpdated = await serviceTask.updateTask(id, name_task);
     return res.status(200).json(taskUpdated);
   } catch (error) {
     return next(error);

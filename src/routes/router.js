@@ -4,18 +4,26 @@ const router = express.Router();
 const { verifyToken } = require("../middlewares/validateToken");
 
 const {
+  validateNameUser,
+  validateUserLogin,
+  validateTaskForUser,
+} = require("../middlewares/validateUser");
+
+const { validateNameTask } = require("../middlewares/validateTask");
+
+const {
   getAllUsers,
   getUserById,
   loginUser,
   createUser,
-  assignmentTask 
+  assignmentTask,
 } = require("../controllers/controllerUser");
 
 router.get("/users", verifyToken, getAllUsers);
 router.get("/users/:user_id", getUserById);
-router.post("/login", loginUser);
-router.post("/users", createUser);
-router.post("/users-tasks", assignmentTask )
+router.post("/login", validateUserLogin, loginUser);
+router.post("/users", validateNameUser, createUser);
+router.post("/users-tasks", validateTaskForUser, assignmentTask);
 
 const {
   getAllTasks,
@@ -27,8 +35,8 @@ const {
 
 router.get("/tasks", getAllTasks);
 router.get("/tasks/:id", getTaskById);
-router.post("/tasks", createTask);
-router.put("/tasks/:id", updateTask);
+router.post("/tasks", validateNameTask, createTask);
+router.put("/tasks/:id", validateNameTask, updateTask);
 router.delete("/tasks/:id", deleteTask);
 
 module.exports = router;

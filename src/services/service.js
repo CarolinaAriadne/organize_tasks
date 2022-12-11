@@ -43,7 +43,7 @@ const updateTask = async (task_id, name_task) => {
 
   const upTaskId = await taskModel.updateTask(task_id, name_task);
   const getTaskUpdate = await taskModel.getTaskIdUp(upTaskId);
-  return getTaskUpdate
+  return getTaskUpdate;
 };
 
 const deleteTask = async (task_id) => {

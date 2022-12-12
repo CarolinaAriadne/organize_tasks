@@ -11,7 +11,7 @@ const nameTask = joi.object({
     if (error) {
       return res
         .status(400)
-        .json({ message: "Some required fields are missing" });
+        .json({ message: "Some required fields are missing or fields must be string" });
     }
   
     next();

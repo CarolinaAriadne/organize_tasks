@@ -1,27 +1,31 @@
-import { expect } from "chai";
-import { stub as _stub } from "sinon";
-import tasksModel, { getAllTasks, getTaskName, createTask } from "../../src/models/model";
-import { getAllTasks as _getAllTasks, getTaskById, createTask as _createTask } from "../../src/services/service";
-import { execute } from "../../src/models/connection";
-import connection, { execute as _execute } from "../../src/models/connection";
-import { stub } from "sinon";
+const { expect } = require("chai")
+const sinon = require('sinon');
+const tasksModel = require('../../src/models/model');
+const tasksService = require('../../src/services/service');
+// const { execute } = require('./../../src/models/connection');
+const connection = require('./../../src/models/connection');
+// import tasksModel, { getAllTasks, getTaskName, createTask } from "../../src/models/model";
+// import { getAllTasks as _getAllTasks, getTaskById, createTask as _createTask } from "../../src/services/service";
+// import { execute } from "../../src/models/connection";
+// import connection, { execute as _execute } from "../../src/models/connection";
+// import { stub } from "sinon";
 
 describe("Busca todas as tarefas no BD", () => {
   describe("Quando não existe produto no banco", () => {
     const resultExecute = [[]];
     before(() => {
-      _stub(tasksModel, "getAllTasks").resolves(resultExecute);
+      sinon.stub(tasksModel, "getAllTasks").resolves(resultExecute);
     });
     after(() => {
-      getAllTasks.restore();
+      tasksModel.getAllTasks.restore();
     });
 
     it("Retorna um array", async () => {
-      const result = await _getAllTasks();
+      const result = await tasksService.getAllTasks();
       expect(result).to.be.an("array");
     });
     it("Se o array está vazio", async () => {
-      const [result] = await _getAllTasks();
+      const [result] = await tasksService.getAllTasks();
       expect(result).to.be.empty;
     });
   });
@@ -33,25 +37,25 @@ describe("Busca todas as tarefas no BD", () => {
       },
     ];
     before(() => {
-      _stub(tasksModel, "getAllTasks").resolves(resultExecute);
+      sinon.stub(tasksModel, "getAllTasks").resolves(resultExecute);
     });
     after(() => {
-      getAllTasks.restore();
+      tasksModel.getAllTasks.restore();
     });
     it("Se retorna um array", async () => {
-      const result = await _getAllTasks();
+      const result = await tasksService.getAllTasks();
       expect(result).to.be.an("array");
     });
     it("O array não retorna vazio", async () => {
-      const result = await _getAllTasks();
+      const result = await tasksService.getAllTasks();
       expect(result).to.be.not.empty;
     });
     it("O array possui objetos", async () => {
-      const [result] = await _getAllTasks();
+      const [result] = await tasksService.getAllTasks();
       expect(result).to.be.an("object");
     });
     it("Objeto do array contém os atributos task_id e name_task", async () => {
-      const [result] = await _getAllTasks();
+      const [result] = await tasksService.getAllTasks();
       expect(result).to.be.includes.all.keys("task_id", "name_task");
     });
   });
@@ -67,17 +71,17 @@ describe("Verifica  o produto procutado pelo id", () => {
     ];
 
     before(() => {
-      _stub(connection, "execute").resolves([resultExecute]);
+      sinon.stub(connection, "execute").resolves([resultExecute]);
     });
     after(() => {
-      _execute.restore();
+      connection.execute.restore();
     });
     it("Um objeto é retornado", async () => {
-      const [result] = await getTaskById();
+      const [result] = await tasksService.getTaskById();
       expect(result).to.be.an("object");
     });
     it("O objeto contém os atributos task_id e name_task", async () => {
-      const [result] = await getTaskById();
+      const [result] = await tasksService.getTaskById();
       expect(result).to.be.includes.all.keys("task_id", "name_task");
     });
   });
@@ -85,11 +89,11 @@ describe("Verifica  o produto procutado pelo id", () => {
     const resultExecute = undefined;
 
     before(() => {
-      _stub(connection, "execute").resolves(resultExecute);
+      sinon.stub(connection, "execute").resolves(resultExecute);
     });
 
     after(() => {
-      _execute.restore();
+      connection.execute.restore();
     });
     it("Retorna mensagem Task not found", async () => {
       try {
@@ -109,16 +113,16 @@ describe("Criação de novo produto no BD", () => {
     ];
 
     before(() => {
-      _stub(tasksModel, "getTaskName").resolves(resultGetTaskName);
-      _stub(tasksModel, "createTask").resolves(resultCreateTask);
+      sinon.stub(tasksModel, "getTaskName").resolves(resultGetTaskName);
+      sinon.stub(tasksModel, "createTask").resolves(resultCreateTask);
     });
 
     after(() => {
-      getTaskName.restore();
-      createTask.restore();
+      tasksModel.getTaskName.restore();
+      tasksModel.createTask.restore();
     });
     it("Se é retornado um objeto", async () => {
-      const result = await _createTask();
+      const result = await tasksService.createTask();
 
       expect(result).to.be.an("object");
     });

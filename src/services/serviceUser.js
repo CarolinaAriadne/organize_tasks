@@ -26,8 +26,8 @@ const getUserById = async (user_id) => {
 const userLogin = async (email, password) => {
   const user = await userModel.userLogin(email, password);
 
-  if (!user) {
-    throw erroHandler(400, "Invalid fields");
+  if (user.length === 0) {
+    throw erroHandler(404, "Users not found");
   }
 
   const returnToken = generateJwt.generateJwt(email);

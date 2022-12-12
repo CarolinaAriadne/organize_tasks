@@ -1,23 +1,25 @@
-import { expect } from "chai";
-import { stub } from "sinon";
-import { getAllTasks, getTaskById, getTaskName, createTask } from "../../src/models/model";
-import connection, { execute } from "../../src/models/connection";
+const { expect } = require("chai");
+const sinon = require('sinon');
+const connection = require('./../../src/models/connection');
+const tasksModel = require('./../../src/models/model');
+// import { getAllTasks, getTaskById, getTaskName, createTask } from "../../src/models/model";
+// import connection, { execute } from "../../src/models/connection";
 
-describe("Busca todas as tarefas do banco de dados", () => {
+describe("Testa model tasks", () => {
   describe("Retorna todas as tarefas", async () => {
     const executeResponse = [[]];
     before(() => {
-      stub(connection, "execute").resolves(executeResponse);
+      sinon.stub(connection, "execute").resolves(executeResponse);
     });
     after(() => {
-      execute.restore();
+      connection.execute.restore();
     });
     it("Retorna um array", async () => {
-      const result = await getAllTasks();
+      const result = await tasksModel.getAllTasks();
       expect(result).to.be.an("array");
     });
     it("Caso o array esteja vazio", async () => {
-      const result = await getAllTasks();
+      const result = await tasksModel.getAllTasks();
       expect(result).to.be.empty;
     });
   });
@@ -33,25 +35,25 @@ describe("Busca todas as tarefas do banco de dados", () => {
       },
     ];
     before(() => {
-      stub(connection, "execute").resolves([resultExecute]);
+      sinon.stub(connection, "execute").resolves([resultExecute]);
     });
     after(() => {
-      execute.restore();
+      connection.execute.restore();
     });
     it("Retorna um array", async () => {
-      const result = await getAllTasks();
+      const result = await tasksModel.getAllTasks();
       expect(result).to.be.an("array");
     });
     it("O array não está vazio", async () => {
-      const result = await getAllTasks();
+      const result = await tasksModel.getAllTasks();
       expect(result).to.be.not.empty;
     });
     it("O array possui objetos", async () => {
-      const [result] = await getAllTasks();
+      const [result] = await tasksModel.getAllTasks();
       expect(result).to.be.an("object");
     });
     it("O objeto do array contém os atributos task_id e name_tasks", async () => {
-      const [result] = await getAllTasks();
+      const [result] = await tasksModel.getAllTasks();
       expect(result).to.be.includes.all.keys("task_id", "name_tasks");
     });
   });
@@ -64,17 +66,17 @@ describe("Busca todas as tarefas do banco de dados", () => {
         },
       ];
       before(() => {
-        stub(connection, "execute").resolves([resultExecute]);
+        sinon.stub(connection, "execute").resolves([resultExecute]);
       });
       after(() => {
-        execute.restore();
+        connection.execute.restore();
       });
       it("Retorna um array", async () => {
-        const result = await getTaskById();
+        const result = await tasksModel.getTaskById();
         expect(result).to.be.an("array");
       });
       it("O objeto contém os atributos task_id e name_task", async () => {
-        const [result] = await getTaskById();
+        const [result] = await tasksModel.getTaskById();
 
         expect(result).to.be.includes.all.keys("task_id", "name_task");
       });
@@ -83,13 +85,13 @@ describe("Busca todas as tarefas do banco de dados", () => {
       const resultExecute = {};
       const id = 34;
       before(() => {
-        stub(connection, "execute").resolves([resultExecute]);
+        sinon.stub(connection, "execute").resolves([resultExecute]);
       });
       after(() => {
-        execute.restore();
+        connection.execute.restore();
       });
       it("Retorna  objeto, se o id não é encontrado", async () => {
-        const result = await getTaskById(id);
+        const result = await tasksModel.getTaskById(id);
         expect(result).to.be.an("object");
       });
     });
@@ -104,17 +106,17 @@ describe("Busca todas as tarefas do banco de dados", () => {
         const name = "tela usuário";
 
         before(() => {
-          stub(connection, "execute").resolves([resultExecute]);
+          sinon.stub(connection, "execute").resolves([resultExecute]);
         });
         after(() => {
-          execute.restore();
+          connection.execute.restore();
         });
         it("Se um array é encontrado", async () => {
-          const result = await getTaskName(name);
+          const result = await tasksModel.getTaskName(name);
           expect(result).to.be.an("array");
         });
         it("Se existe a chave name_task no objeto que vem dentro do array", async () => {
-          const [result] = await getTaskName(name);
+          const [result] = await tasksModel.getTaskName(name);
           expect(result).to.be.includes.all.keys("name_task");
         });
       });
@@ -128,14 +130,14 @@ describe("Busca todas as tarefas do banco de dados", () => {
         ];
 
         before(() => {
-          stub(connection, "execute").resolves(resultExecute);
+          sinon.stub(connection, "execute").resolves(resultExecute);
         });
 
         after(() => {
-          execute.restore();
+          connection.execute.restore();
         });
         it("O id será um número retornado", async () => {
-          const result = await createTask();
+          const result = await tasksModel.createTask();
 
           expect(result).to.be.a("number");
         });

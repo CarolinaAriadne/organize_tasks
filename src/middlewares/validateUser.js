@@ -12,7 +12,7 @@ const validateUserLogin = (req, res, next) => {
   if (error) {
     return res
       .status(400)
-      .json({ message: "Some required fields are missing" });
+      .json({ message: "Some required fields are missing or fields must be string" });
   }
 
   next();
@@ -29,7 +29,7 @@ const validateNameUser = (req, res, next) => {
   if (error) {
     return res
       .status(400)
-      .json({ message: "Some required fields are missing" });
+      .json({ message: "Some required fields are missing or fields must be string" });
   }
 
   next();
@@ -47,7 +47,7 @@ const validateTaskForUser = (req, res, next) => {
   if (error) {
     return res
       .status(400)
-      .json({ message: "Some required fields are missing" });
+      .json({ message: "Some required fields are missing or fields must be string" });
   }
 
   next();

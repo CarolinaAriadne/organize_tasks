@@ -1,7 +1,21 @@
-import { stub, match } from "sinon";
-import { expect } from "chai";
-import tasksService, { getAllTasks, getTaskById } from "../../src/services/service";
-import { getAllTasks as _getAllTasks, getTaskById as _getTaskById, createTask } from "../../src/controllers/controller";
+const sinon = require("sinon");
+const { expect } = require("chai");
+const serviceTasks = require("../../src/services/service");
+const controllerTasks = require("../../src/controllers/controller");
+
+// import tasksService, {
+//   getAllTasks,
+//   getTaskById,
+// } from "../../src/services/service";
+// import {
+//   getAllTasks as _getAllTasks,
+//   getTaskById as _getTaskById,
+//   createTask,
+// } from "../../src/controllers/controller";
+
+// const stub = require('stub')
+// const match = require('match')
+// const expect = require()
 
 describe("A chamada da controller", () => {
   describe("Quando existem tasks no BD", () => {
@@ -20,27 +34,22 @@ describe("A chamada da controller", () => {
     const response = [];
 
     before(() => {
-      response.status = stub().returns(response);
-      response.json = stub().returns();
+      response.status = sinon.stub().returns(response);
+      response.json = sinon.stub().returns();
 
-      stub(tasksService, "getAllTasks").resolves(resultExecute);
+      sinon.stub(serviceTasks, "getAllTasks").resolves(resultExecute);
     });
 
     after(() => {
-      getAllTasks.restore();
+      serviceTasks.getAllTasks.restore();
     });
     it("Quando existe produto no BD, o status é chamado, passando o código 200", async () => {
-      await _getAllTasks(request, response);
+      await controllerTasks.getAllTasks(request, response);
 
       expect(response.status.calledWith(200)).to.be.equal(true);
     });
-    it("Se o método json é retornado contendo um array", async () => {
-      await _getAllTasks(request, response);
-
-      expect(response.json.calledWith(match.array)).to.be.equal(true);
-    });
     it("Se recebe um retorno contendo um array de objetos, com as chaves task_id e name_task", async () => {
-      await _getAllTasks(request, response);
+      await controllerTasks.getAllTasks(request, response);
 
       const [product] = resultExecute;
 
@@ -61,22 +70,17 @@ describe("A chamada da controller", () => {
 
       before(() => {
         request.params = { task_id: 1 };
-        response.status = stub().returns(response);
-        response.json = stub().returns();
+        response.status = sinon.stub().returns(response);
+        response.json = sinon.stub().returns();
 
-        stub(tasksService, "getTaskById").resolves(responseExecute);
+        sinon.stub(serviceTasks, "getTaskById").resolves(responseExecute);
       });
 
       after(() => {
-        getTaskById.restore();
-      });
-      it("Se é retornado um objeto", async () => {
-        await _getTaskById(request, response);
-
-        expect(response.json.calledWith(match.object)).to.be.equal(true);
+        serviceTasks.getTaskById.restore();
       });
       it("Se é retornado o status 200", async () => {
-        await _getTaskById(request, response);
+        await controllerTasks.getTaskById(request, response);
 
         expect(response.status.calledWith(200)).to.be.equal(true);
       });
@@ -88,14 +92,14 @@ describe("A chamada da controller", () => {
 
       before(() => {
         request.params = { task_id: 50 };
-        response.status = stub().returns(response);
-        response.json = stub().returns();
+        response.status = sinon.stub().returns(response);
+        response.json = sinon.stub().returns();
 
-        stub(tasksService, "getTaskById").throws(err);
+        sinon.stub(serviceTasks, "getTaskById").throws(err);
       });
 
       after(() => {
-        getTaskById.restore();
+        serviceTasks.getTaskById.restore();
       });
       it('Retorna a mensagem de erro  "Task not found"', async () => {
         try {
@@ -117,15 +121,15 @@ describe("A chamada da controller", () => {
       before(() => {
         request.body = { name_task: "teste_1" };
 
-        response.status = stub().returns(response);
-        response.json = stub().returns();
+        response.status = sinon.stub().returns(response);
+        response.json = sinon.stub().returns();
 
-        stub(tasksService, "createTask").resolves(newTask);
+        sinon.stub(serviceTasks, "createTask").resolves(newTask);
       });
-      it("Se o método json é  retornado contendo um objeto", async () => {
-        await createTask(request, response);
+      it("Status 200 é retornado se a task é inserida", async () => {
+        await controllerTasks.createTask(request, response);
 
-        expect(response.json.calledWith(match.object)).to.be.equal(true);
+        expect(response.status.calledWith(200)).to.be.equal(true);
       });
     });
   });

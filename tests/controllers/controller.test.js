@@ -3,20 +3,6 @@ const { expect } = require("chai");
 const serviceTasks = require("../../src/services/service");
 const controllerTasks = require("../../src/controllers/controller");
 
-// import tasksService, {
-//   getAllTasks,
-//   getTaskById,
-// } from "../../src/services/service";
-// import {
-//   getAllTasks as _getAllTasks,
-//   getTaskById as _getTaskById,
-//   createTask,
-// } from "../../src/controllers/controller";
-
-// const stub = require('stub')
-// const match = require('match')
-// const expect = require()
-
 describe("A chamada da controller", () => {
   describe("Quando existem tasks no BD", () => {
     const resultExecute = [

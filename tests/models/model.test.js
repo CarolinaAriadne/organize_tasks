@@ -2,8 +2,6 @@ const { expect } = require("chai");
 const sinon = require('sinon');
 const connection = require('./../../src/models/connection');
 const tasksModel = require('./../../src/models/model');
-// import { getAllTasks, getTaskById, getTaskName, createTask } from "../../src/models/model";
-// import connection, { execute } from "../../src/models/connection";
 
 describe("Testa model tasks", () => {
   describe("Retorna todas as tarefas", async () => {

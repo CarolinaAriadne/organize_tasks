@@ -2,13 +2,7 @@ const { expect } = require("chai")
 const sinon = require('sinon');
 const tasksModel = require('../../src/models/model');
 const tasksService = require('../../src/services/service');
-// const { execute } = require('./../../src/models/connection');
 const connection = require('./../../src/models/connection');
-// import tasksModel, { getAllTasks, getTaskName, createTask } from "../../src/models/model";
-// import { getAllTasks as _getAllTasks, getTaskById, createTask as _createTask } from "../../src/services/service";
-// import { execute } from "../../src/models/connection";
-// import connection, { execute as _execute } from "../../src/models/connection";
-// import { stub } from "sinon";
 
 describe("Busca todas as tarefas no BD", () => {
   describe("Quando não existe produto no banco", () => {

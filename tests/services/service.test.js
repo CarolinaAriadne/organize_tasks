@@ -5,7 +5,7 @@ const tasksService = require('../../src/services/service');
 const connection = require('./../../src/models/connection');
 
 describe("Busca todas as tarefas no BD", () => {
-  describe("Quando não existe produto no banco", () => {
+  describe("Quando não existe task no banco", () => {
     const resultExecute = [[]];
     before(() => {
       sinon.stub(tasksModel, "getAllTasks").resolves(resultExecute);
@@ -23,7 +23,7 @@ describe("Busca todas as tarefas no BD", () => {
       expect(result).to.be.empty;
     });
   });
-  describe("Quando existem produtos no BD", () => {
+  describe("Quando existem tasks no BD", () => {
     const resultExecute = [
       {
         task_id: 1,
@@ -55,7 +55,7 @@ describe("Busca todas as tarefas no BD", () => {
   });
 });
 
-describe("Verifica  o produto procutado pelo id", () => {
+describe("Verifica  a task procurada pelo id", () => {
   describe("Quando o id é encontrado", () => {
     const resultExecute = [
       {
@@ -97,8 +97,8 @@ describe("Verifica  o produto procutado pelo id", () => {
     });
   });
 });
-describe("Criação de novo produto no BD", () => {
-  describe("Produto inserido", () => {
+describe("Criação de nova task no BD", () => {
+  describe("Task inserida", () => {
     const resultGetTaskName = [];
     const resultCreateTask = [
       {

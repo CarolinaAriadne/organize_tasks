@@ -12,24 +12,30 @@ const validateUserLogin = (req, res, next) => {
   if (error) {
     return res
       .status(400)
-      .json({ message: "Some required fields are missing or fields must be string" });
+      .json({
+        message: "Some required fields are missing or fields must be string",
+      });
   }
 
   next();
 };
 
-const nameUser = joi.object({
-  name_task: joi.string().required(),
+const dadosUser = joi.object({
+  name_user: joi.string().required(),
+  password: joi.string().required(),
+  email: joi.string().required(),
 });
 
-const validateNameUser = (req, res, next) => {
-  const { name_task } = req.body;
-  const { error } = nameUser.validate({ name_task });
+const validateDadosUser = (req, res, next) => {
+  const { name_user, password, email } = req.body;
+  const { error } = dadosUser.validate({ name_user, password, email });
 
   if (error) {
     return res
       .status(400)
-      .json({ message: "Some required fields are missing or fields must be string" });
+      .json({
+        message: "Some required fields are missing or fields must be string",
+      });
   }
 
   next();
@@ -47,7 +53,9 @@ const validateTaskForUser = (req, res, next) => {
   if (error) {
     return res
       .status(400)
-      .json({ message: "Some required fields are missing or fields must be string" });
+      .json({
+        message: "Some required fields are missing or fields must be string",
+      });
   }
 
   next();
@@ -55,6 +63,6 @@ const validateTaskForUser = (req, res, next) => {
 
 module.exports = {
   validateUserLogin,
-  validateNameUser,
+  validateDadosUser,
   validateTaskForUser,
 };

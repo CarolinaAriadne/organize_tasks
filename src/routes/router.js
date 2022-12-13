@@ -4,7 +4,7 @@ const router = express.Router();
 const { verifyToken } = require("../middlewares/validateToken");
 
 const {
-  validateNameUser,
+  validateDadosUser,
   validateUserLogin,
   validateTaskForUser,
 } = require("../middlewares/validateUser");
@@ -22,7 +22,7 @@ const {
 router.get("/users", verifyToken, getAllUsers);
 router.get("/users/:user_id", getUserById);
 router.post("/login", validateUserLogin, loginUser);
-router.post("/users", validateNameUser, createUser);
+router.post("/users", validateDadosUser, createUser);
 router.post("/users-tasks", validateTaskForUser, assignmentTask);
 
 const {

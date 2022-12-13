@@ -25,6 +25,7 @@ const getUserById = async (user_id) => {
 
 const userLogin = async (email, password) => {
   const user = await userModel.userLogin(email, password);
+  console.log(user)
 
   if (user.length === 0) {
     throw erroHandler(404, "Users not found");
@@ -36,6 +37,7 @@ const userLogin = async (email, password) => {
 
 const createUser = async (name_user, password, email) => {
   const nameUser = await userModel.getUserName(name_user);
+  console.log(nameUser, 'nameUser service')
 
   if (nameUser.length > 0) {
     throw erroHandler(409, "User already exists");

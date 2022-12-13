@@ -93,8 +93,8 @@ describe("Testa model tasks", () => {
         expect(result).to.be.an("object");
       });
     });
-    describe("Testa se encontra o produto buscado pelo nome - func getTaskName ", async () => {
-      describe("O produto é encontrado", () => {
+    describe("Testa se encontra a task buscado pelo nome - func getTaskName ", async () => {
+      describe("A task é encontrada", () => {
         const resultExecute = [
           {
             task_id: 5,

@@ -29,7 +29,7 @@ describe("A chamada da controller", () => {
     after(() => {
       serviceTasks.getAllTasks.restore();
     });
-    it("Quando existe produto no BD, o status é chamado, passando o código 200", async () => {
+    it("Quando existe task no BD, o status é chamado, passando o código 200", async () => {
       await controllerTasks.getAllTasks(request, response);
 
       expect(response.status.calledWith(200)).to.be.equal(true);
@@ -106,11 +106,15 @@ describe("A chamada da controller", () => {
 
       before(() => {
         request.body = { name_task: "teste_1" };
+      });
 
-        response.status = sinon.stub().returns(response);
-        response.json = sinon.stub().returns();
+      response.status = sinon.stub().returns(response);
+      response.json = sinon.stub().returns();
 
-        sinon.stub(serviceTasks, "createTask").resolves(newTask);
+      sinon.stub(serviceTasks, "createTask").resolves(newTask);
+
+      after(() => {
+        serviceTasks.createTask.restore();
       });
       it("Status 200 é retornado se a task é inserida", async () => {
         await controllerTasks.createTask(request, response);

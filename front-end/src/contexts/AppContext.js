@@ -1,11 +1,11 @@
 import React, { createContext, useMemo, useState } from "react";
 import PropTypes from "prop-types";
-import { useNavigate } from " react-router-dom";
+import { useNavigate } from "react-router-dom";
 import api from "../services/api";
 
 const StoreContext = createContext();
 
-export const StoreProvider = ({ children }) => {
+const StoreProvider = ({ children }) => {
   const [users, setUsers] = useState([]);
   const [tasks, setTasks] = useState([]);
 
@@ -61,3 +61,5 @@ export const StoreProvider = ({ children }) => {
 StoreProvider.propTypes = {
     children: PropTypes.object,
 }.isRequired;
+
+export default StoreProvider;

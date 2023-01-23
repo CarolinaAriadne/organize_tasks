@@ -1,8 +1,8 @@
-import axios , { isCancel, AxiosError } from'axios';
+import axios  from'axios';
 // const  axios  =  requer ( 'axios' );
 
 const api = axios.create({
-   baseURL: 'http://localhost:3000', 
+   baseURL: 'http://localhost:3337', 
 });
 
 export default api;

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
 // import { AppContext } from '../contexts/AppContext';
@@ -35,31 +35,40 @@ export default function LoginPage() {
   };
 
   return (
-      <form onSubmit={ onSubmit }>
-          <div>
-              <label htmlFor="email">
-                  Login
-                  <input
-                  name="email"
-                  type="text"
-                  onChange={( { target } ) => setEmail(target.value)}
-                  onKeyUp={ disableSubmit }
-                  value= { email }
-                  />
-              </label>
-          </div>
-          <div>
-              <label htmlFor="password">
-                  Senha
-                  <input
-                    type="password"
-                    name="password"
-                    onChange={ ({target}) => setPassword(target.value) }
-                    onKeyUp={ disableSubmit }
-                    value={ password }
-                  />
-              </label>
-          </div>
-      </form>
-  )
+    <form onSubmit={onSubmit}>
+      <div>
+        <label htmlFor="email">
+          Login
+          <input
+            name="email"
+            type="text"
+            onChange={({ target }) => setEmail(target.value)}
+            onKeyUp={disableSubmit}
+            value={email}
+          />
+        </label>
+      </div>
+      <div>
+        <label htmlFor="password">
+          Senha
+          <input
+            type="password"
+            name="password"
+            onChange={({ target }) => setPassword(target.value)}
+            onKeyUp={disableSubmit}
+            value={password}
+          />
+        </label>
+      </div>
+      <div>
+        <button type="submit" disabled={disabled}>
+          LOGIN
+        </button>
+        <button type="button" onClick={() => navigate("/register")}>
+          Ainda não tenho conta
+        </button>
+      </div>
+      {error && <p>{error}</p>}
+    </form>
+  );
 }

@@ -5,6 +5,7 @@ import LoginPage from './pages/Login';
 import LandingPage from './pages/LandingPage';
 import TasksPage from './pages/Tasks';
 import RegisterPage from './pages/Resgister';
+import styled from 'styled-components'
 
 function App() {
   return (
@@ -20,5 +21,13 @@ function App() {
     </Router>
   )
 }
+
+const MainContainer = styled.div`
+display: flex;
+align-items: center;
+flex-direction: column;
+height:
+
+`
 
 export default App;

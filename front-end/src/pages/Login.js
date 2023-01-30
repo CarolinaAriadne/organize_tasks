@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
+import Input from "../components/Input";
 // import { AppContext } from '../contexts/AppContext';
 
 export default function LoginPage() {
@@ -35,34 +36,34 @@ export default function LoginPage() {
   };
 
   return (
-    <form onSubmit={onSubmit}>
-      <div>
+    <form class="formLogin" onSubmit={onSubmit}>
+      {/* <div> */}
         <label htmlFor="email">
-          Login
-          <input
+          <section class="sectionLogin">Login</section>       
+          <Input
             name="email"
             type="text"
             onChange={({ target }) => setEmail(target.value)}
             onKeyUp={disableSubmit}
             value={email}
-          />
+          ></Input>
         </label>
-      </div>
-      <div>
+      {/* </div> */}
+      {/* <div> */}
         <label htmlFor="password">
-          Senha
-          <input
+         <section class="sectionSenha">Senha</section>
+          <Input
             type="password"
             name="password"
             onChange={({ target }) => setPassword(target.value)}
             onKeyUp={disableSubmit}
             value={password}
-          />
+          ></Input>
         </label>
-      </div>
+      {/* </div> */}
       <div>
         <button type="submit" disabled={disabled}>
-          LOGIN
+          Enviar
         </button>
         <button type="button" onClick={() => navigate("/register")}>
           Ainda não tenho conta

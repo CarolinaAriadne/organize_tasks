@@ -14,5 +14,19 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  width: 100vh;
+  width: 195vh;
+}
+
+.sectionLogin {
+  margin: 10%;
+  padding: 7%;
+}
+
+.sectionSenha {
+  margin: 10%;
+  padding: 7%;
+}
+
+.formLogin {
+  height: 40px;
 }

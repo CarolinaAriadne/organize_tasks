@@ -19,11 +19,8 @@ function App() {
             element={
               <MainContainer>
                 <InputContainer>
-                  {/* <WelcomeText>
-                   Bem-vindo! */}
                   <LoginPage />
-                  {/* </WelcomeText> */}
-                </InputContainer>
+                 </InputContainer>
               </MainContainer>
             }
           />
@@ -50,10 +47,6 @@ const MainContainer = styled.div`
   letter-spacing: 0.4rem;
 `;
 
-// const WelcomeText = styled.h2`
-//   margin: 8rem 0 2rem 0;
-// `;
-
 const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -62,13 +55,5 @@ const InputContainer = styled.div`
   height: 20%;
   width: 100%;
 `;
-
-// const ButtonContainer = styled.section`
-//   margin: 1rem 0 2rem 0;
-//   width: 50%;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-// `;
 
 export default App;

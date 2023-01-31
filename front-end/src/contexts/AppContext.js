@@ -13,6 +13,7 @@ const StoreProvider = ({ children }) => {
 
   const getUsers = async () => {
     const user = JSON.parse(localStorage.getItem("user"));
+    console.log(user)
     try {
       const { data } = await api.get("/users", {
         headers: { Authorization: user.token },

@@ -18,7 +18,6 @@ body {
 }
 
 .formLogin {
-  /* height: 40px; */
   display: flex;
   flex-direction: column;
   padding-top: 70%;
@@ -31,4 +30,11 @@ body {
 
 .sectionSenha {
   margin-bottom: 25px;
+}
+
+.erroDeDados {
+  width: 100%;
+  height: 0.5rem;
+  border-radius: 0.8rem;
+  margin-left: 15%;
 }

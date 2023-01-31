@@ -13,4 +13,19 @@ const StyledInput = styled.input`
   padding: 1rem;
   border: none;
   outline: none;
+  color: #3c354e;
+  font-size: 1rem;
+  font-weight: bold;
+  &:focus {
+      display: inline-block;
+      box-shadow: 0 0 0 0.2rem #b9abe0;
+      backdrop-filter: blur(12rem);
+      border-radius: 2rem;
+  }
+  &: :placeholder {
+      color: #b9abe099;
+      font-weight: 100;
+      font-size: 1rem;
+
+  }
 `;

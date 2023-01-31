@@ -2,7 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
 import Input from "../components/Input";
-// import { AppContext } from '../contexts/AppContext';
+import ButtonSubmit from "../components/ButtonSubmit";
+import Button from "../components/Button";
 
 export default function LoginPage() {
   const [error, setError] = useState("");
@@ -37,10 +38,8 @@ export default function LoginPage() {
 
   return (
     <form className="formLogin" onSubmit={onSubmit}>
-      {/* <div> */}
-        <label htmlFor="email">
-          {/* <section class="sectionLogin">Login</section>        */}
-          <section className="sectionEmail">
+      <label htmlFor="email">
+        <section className="sectionEmail">
           <Input
             placeholder="Email"
             name="email"
@@ -49,13 +48,10 @@ export default function LoginPage() {
             onKeyUp={disableSubmit}
             value={email}
           ></Input>
-          </section>
-        </label>
-      {/* </div> */}
-      {/* <div> */}
-        <label htmlFor="password">
-         {/* <section class="sectionSenha">Senha</section> */}
-         <section className="sectionSenha">
+        </section>
+      </label>
+      <label htmlFor="password">
+        <section className="sectionSenha">
           <Input
             placeholder="Senha"
             type="password"
@@ -64,18 +60,25 @@ export default function LoginPage() {
             onKeyUp={disableSubmit}
             value={password}
           ></Input>
-          </section>
-        </label>
-      {/* </div> */}
-      {/* <div> */}
-        <button type="submit" disabled={disabled}>
-          Enviar
-        </button>
-        <button type="button" onClick={() => navigate("/register")}>
-          Ainda não tenho conta
-        </button>
-      {/* </div> */}
-      {error && <p>{error}</p>}
+        </section>
+      </label>
+      <section>
+        <ButtonSubmit
+          type="submit"
+          content="Enviar"
+          disabled={disabled}
+        ></ButtonSubmit>
+      </section>
+      <Button
+        type="button"
+        content="Não tenho conta"
+        onClick={() => navigate("/register")}
+      ></Button>
+
+      {/* <button type="button" onClick={() => navigate("/register")}>
+        Ainda não tenho conta
+      </button> */}
+      <section>{error && <p>{error}</p>}</section>
     </form>
   );
 }

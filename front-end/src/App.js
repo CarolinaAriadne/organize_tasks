@@ -21,7 +21,7 @@ function App() {
                 <InputContainer>
                   {/* <WelcomeText>
                    Bem-vindo! */}
-                    <LoginPage />
+                  <LoginPage />
                   {/* </WelcomeText> */}
                 </InputContainer>
               </MainContainer>
@@ -62,5 +62,13 @@ const InputContainer = styled.div`
   height: 20%;
   width: 100%;
 `;
+
+// const ButtonContainer = styled.section`
+//   margin: 1rem 0 2rem 0;
+//   width: 50%;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+// `;
 
 export default App;

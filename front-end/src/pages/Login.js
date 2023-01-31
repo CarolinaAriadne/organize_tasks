@@ -36,39 +36,45 @@ export default function LoginPage() {
   };
 
   return (
-    <form class="formLogin" onSubmit={onSubmit}>
+    <form className="formLogin" onSubmit={onSubmit}>
       {/* <div> */}
         <label htmlFor="email">
-          <section class="sectionLogin">Login</section>       
+          {/* <section class="sectionLogin">Login</section>        */}
+          <section className="sectionEmail">
           <Input
+            placeholder="Email"
             name="email"
             type="text"
             onChange={({ target }) => setEmail(target.value)}
             onKeyUp={disableSubmit}
             value={email}
           ></Input>
+          </section>
         </label>
       {/* </div> */}
       {/* <div> */}
         <label htmlFor="password">
-         <section class="sectionSenha">Senha</section>
+         {/* <section class="sectionSenha">Senha</section> */}
+         <section className="sectionSenha">
           <Input
+            placeholder="Senha"
             type="password"
             name="password"
             onChange={({ target }) => setPassword(target.value)}
             onKeyUp={disableSubmit}
             value={password}
           ></Input>
+          </section>
         </label>
       {/* </div> */}
-      <div>
+      {/* <div> */}
         <button type="submit" disabled={disabled}>
           Enviar
         </button>
         <button type="button" onClick={() => navigate("/register")}>
           Ainda não tenho conta
         </button>
-      </div>
+      {/* </div> */}
       {error && <p>{error}</p>}
     </form>
   );

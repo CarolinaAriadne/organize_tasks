@@ -19,10 +19,10 @@ function App() {
             element={
               <MainContainer>
                 <InputContainer>
-                  <WelcomeText>
-                    {/* colocar bem-vindo aqui */}
+                  {/* <WelcomeText>
+                   Bem-vindo! */}
                     <LoginPage />
-                  </WelcomeText>
+                  {/* </WelcomeText> */}
                 </InputContainer>
               </MainContainer>
             }
@@ -50,9 +50,9 @@ const MainContainer = styled.div`
   letter-spacing: 0.4rem;
 `;
 
-const WelcomeText = styled.h2`
-  margin: 8rem 0 2rem 0;
-`;
+// const WelcomeText = styled.h2`
+//   margin: 8rem 0 2rem 0;
+// `;
 
 const InputContainer = styled.div`
   display: flex;

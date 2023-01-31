@@ -17,16 +17,18 @@ body {
   width: 195vh;
 }
 
-.sectionLogin {
-  margin: 10%;
-  padding: 7%;
+.formLogin {
+  /* height: 40px; */
+  display: flex;
+  flex-direction: column;
+  padding-top: 70%;
+  margin-inline-end: 50px;
+}
+
+.sectionEmail {
+  margin-bottom: 25px;
 }
 
 .sectionSenha {
-  margin: 10%;
-  padding: 7%;
-}
-
-.formLogin {
-  height: 40px;
+  margin-bottom: 25px;
 }

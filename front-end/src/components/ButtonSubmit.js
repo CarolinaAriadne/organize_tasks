@@ -1,7 +1,11 @@
 import styled from "styled-components";
 
 export default function ButtonSubmit({ content, type, disabled }) {
-  return <StyledButton type={type} disabled={disabled}>{content}</StyledButton>;
+  return (
+    <StyledButton type={type} disabled={disabled}>
+      {content}
+    </StyledButton>
+  );
 }
 
 const StyledButton = styled.button`

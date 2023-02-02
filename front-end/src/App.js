@@ -20,12 +20,22 @@ function App() {
               <MainContainer>
                 <InputContainer>
                   <LoginPage />
-                 </InputContainer>
+                </InputContainer>
               </MainContainer>
             }
           />
           <Route exact path="/tasks" element={<TasksPage />} />
-          <Route exact path="/register" element={<RegisterPage />} />
+          <Route
+            exact
+            path="/register"
+            element={
+              <MainContainer>
+                <InputContainer>
+                  <RegisterPage />
+                </InputContainer>
+              </MainContainer>
+            }
+          />
         </Routes>
       </AppContextProvider>
     </Router>

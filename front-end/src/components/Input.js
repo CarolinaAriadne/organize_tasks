@@ -1,7 +1,23 @@
 import styled from "styled-components";
 
-export default function Input({ name, type, onChange,  onKeyUp, value, placeholder }) {
-  return <StyledInput name={name} type={type} onChange={onChange}  onKeyUp={ onKeyUp} value={value}   placeholder={placeholder}></StyledInput>;
+export default function Input({
+  name,
+  type,
+  onChange,
+  onKeyUp,
+  value,
+  placeholder,
+}) {
+  return (
+    <StyledInput
+      name={name}
+      type={type}
+      onChange={onChange}
+      onKeyUp={onKeyUp}
+      value={value}
+      placeholder={placeholder}
+    ></StyledInput>
+  );
 }
 
 const StyledInput = styled.input`

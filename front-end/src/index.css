@@ -24,11 +24,23 @@ body {
   margin-inline-end: 50px;
 }
 
+
+.formRegister {
+  display: flex;
+  flex-direction: column;
+  padding-top: 70%;
+  margin-inline-end: 50px;
+}
+
 .sectionEmail {
   margin-bottom: 25px;
 }
 
 .sectionSenha {
+  margin-bottom: 25px;
+}
+
+.sectionNome {
   margin-bottom: 25px;
 }
 

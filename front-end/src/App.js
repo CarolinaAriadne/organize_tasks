@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import AppContextProvider from "../src/contexts/AppContext";
+// import AppContextProvider from "../src/contexts/AppContext";
 import LoginPage from "./pages/Login";
 import LandingPage from "./pages/LandingPage";
 import TasksPage from "./pages/Tasks";
@@ -10,34 +10,34 @@ import styled from "styled-components";
 function App() {
   return (
     <Router>
-      <AppContextProvider>
-        <Routes>
-          <Route exact path="/" element={<LandingPage />} />
-          <Route
-            exact
-            path="/login"
-            element={
-              <MainContainer>
-                <InputContainer>
-                  <LoginPage />
-                </InputContainer>
-              </MainContainer>
-            }
-          />
-          <Route exact path="/tasks" element={<TasksPage />} />
-          <Route
-            exact
-            path="/register"
-            element={
-              <MainContainer>
-                <InputContainer>
-                  <RegisterPage />
-                </InputContainer>
-              </MainContainer>
-            }
-          />
-        </Routes>
-      </AppContextProvider>
+      {/* <AppContextProvider> */}
+      <Routes>
+        <Route exact path="/" element={<LandingPage />} />
+        <Route
+          exact
+          path="/login"
+          element={
+            <MainContainer>
+              <InputContainer>
+                <LoginPage />
+              </InputContainer>
+            </MainContainer>
+          }
+        />
+        <Route exact path="/tasks" element={<TasksPage />} />
+        <Route
+          exact
+          path="/register"
+          element={
+            <MainContainer>
+              <InputContainer>
+                <RegisterPage />
+              </InputContainer>
+            </MainContainer>
+          }
+        />
+      </Routes>
+      {/* </AppContextProvider> */}
     </Router>
   );
 }

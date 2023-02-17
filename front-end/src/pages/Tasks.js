@@ -1,11 +1,5 @@
-// import { useContext, useEffect, useState } from "react"
-// import {AppContext} from '../contexts/AppContext';
 import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
 import api from "../services/api";
-// import InputTask from "../components/InputTask";
-// import ButtonSubmitTask from "../components/ButtonSubmitTask";
-// import Button from "../components/Button";
 
 export default function TasksPage() {
   const [error, setError] = useState("");
@@ -42,7 +36,9 @@ export default function TasksPage() {
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;1,700&display=swap"
         rel="stylesheet"
       />
-      <header><h1 className="h1Task">Minhas tarefas</h1></header>
+      <header>
+        <h1 className="h1Task">Minhas tarefas</h1>
+      </header>
       <section className="container">
         <section className="container-new-task">
           <input
@@ -57,7 +53,7 @@ export default function TasksPage() {
             onKeyUp={disableSubmit}
             value={name_task}
           ></input>
-          {/* <section className="sectionBtnCriar"> */}
+
           <button
             className="newTaskButton"
             type="submit"
@@ -69,12 +65,6 @@ export default function TasksPage() {
         </section>
         <section className="tasks-container"></section>
       </section>
-      {/* </section> */}
-      {/* <Button
-          type="button"
-          content="Não tenho conta"
-          onClick={() => navigate("/register")}
-        ></Button> */}
       <section>{error && <p className="erroDeDados">{error}</p>}</section>
     </form>
   );

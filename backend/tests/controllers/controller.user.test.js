@@ -2,7 +2,7 @@ const sinon = require("sinon");
 const { expect } = require("chai");
 const serviceUser = require("../../src/services/serviceUser");
 const controllerUser = require("../../src/controllers/controllerUser");
-// const sandbox = require("sinon").createSandbox();
+
 
 describe("A chamada da controller Users", () => {
   describe("Quando existem users no BD", () => {

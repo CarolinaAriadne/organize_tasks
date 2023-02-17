@@ -53,7 +53,6 @@ body {
 .container {
   border: 2px solid #fff;
   padding: 20px 40px;
-  /* width: 100%; */
   min-width: 500px;
 }
 
@@ -76,6 +75,11 @@ body {
 
 .tasks-container {
   background-color: #fff;
+  padding: 30px 20px;
+  margin-top: 60px;
+  border-radius: 10px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+  width: 100%;
 }
 
 .container-new-task input:focus {
@@ -97,23 +101,6 @@ body {
   margin-left: 12px;
   cursor: pointer;
 }
-
-/* .buttonCriar {
-  background: linear-gradient(to right, #14163c, #03217b 79%);
-  height: 100px;
-  width: 100px;
-  float: right;
-  border: none;
-  color: white;
-  border-radius: 2rem;
-  cursor: pointer;
-  height: 3rem;
-  margin-bottom: 100px;
-} */
-
-/* .sectionBtnCriar {
-  width: 50%;
-} */
 
 .erroDeDados {
   width: 100%;

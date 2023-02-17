@@ -9,7 +9,7 @@ const getAllTasks = async () => {
 const getTaskById = async (task_id) => {
   const query = "SELECT * FROM OrganizeTasks.tasks WHERE task_id = ?;";
   const [response] = await connection.execute(query, [task_id]);
-  return response; // usada
+  return response;
 };
 
 const getTaskName = async (name_task) => {

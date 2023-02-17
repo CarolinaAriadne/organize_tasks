@@ -44,9 +44,8 @@ const StoreProvider = ({ children }) => {
 
   const value = {
     tasks,
-    setTasks
-  }
-
+    setTasks,
+  };
 
   return (
     <StoreContext.Provider value={value}>{children}</StoreContext.Provider>
@@ -54,7 +53,7 @@ const StoreProvider = ({ children }) => {
 };
 
 StoreProvider.propTypes = {
-    children: PropTypes.object,
+  children: PropTypes.object,
 }.isRequired;
 
 export default StoreProvider;

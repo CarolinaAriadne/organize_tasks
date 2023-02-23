@@ -1,17 +1,50 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import api from "../services/api";
 
 export default function TasksPage() {
   const [error, setError] = useState("");
   const [name_task, setTask] = useState("");
   const [disabled, setDisabled] = useState(true);
+  const [tasks, addTask] = useState([]);
+  const [allTasks, getTasks] = useState([{}]);
+
+  useEffect(() => {
+    loadTasks();
+  }, []);
+
+  async function loadTasks() {
+    try {
+      const { data } = await api.get("/tasks");
+      getTasks(data);
+    } catch (err) {
+      setError("Bad Request");
+    }
+  }
+
+  const handleRemove = async (id) => {
+    console.log(id)
+    // let reduceTodoTasks = [...allTasks];
+    // console.log(reduceTodoTasks)
+    // reduceTodoTasks.splice(id)
+    // console.log(reduceTodoTasks)
+
+    // getTasks(reduceTodoTasks);
+
+    try {
+      const { data } = await api.delete("/tasks/:id", { id });
+
+      getTasks(data);
+    } catch (err) {
+      setError("Bad Request");
+    }
+  };
 
   const onSubmit = async (event) => {
     event.preventDefault();
     try {
       const { data } = await api.post("/tasks", { name_task });
 
-      localStorage.setItem("name_task", JSON.stringify(data));
+      addTask([...tasks, data]);
     } catch (err) {
       setError("Dados inválidos");
     }
@@ -19,7 +52,7 @@ export default function TasksPage() {
 
   const disableSubmit = () => {
     if (typeof name_task === "string") {
-      console.log("aqui");
+      console.log(name_task, "aqui3");
       setDisabled(false);
       setError("");
     } else {
@@ -47,7 +80,6 @@ export default function TasksPage() {
             name="task"
             type="text"
             onChange={({ target }) => {
-              console.log(target.value);
               setTask(target.value);
             }}
             onKeyUp={disableSubmit}
@@ -63,7 +95,33 @@ export default function TasksPage() {
             Criar
           </button>
         </section>
-        <section className="tasks-container"></section>
+        <section>
+          {/* <div> */}
+          {tasks.map((task) => {
+            return (
+              <div className="tasks-container">
+                <p className="p-addtask" key={task.id}>
+                  {task.name_task}
+                </p>
+                <button
+                  type="button"
+                  className="btn-excluir"
+                  onClick={() => handleRemove(task.id)}
+                >
+                  excluir
+                </button>
+              </div>
+            );
+          })}
+          {/* </div> */}
+          {/* <button className="btn-excluir">excluir</button> */}
+          {/* <section className="alltasks-container">
+            {allTasks.map((task) => {
+              return <p>{task.name_task}</p>;
+            })}
+           
+          </section> */}
+        </section>
       </section>
       <section>{error && <p className="erroDeDados">{error}</p>}</section>
     </form>

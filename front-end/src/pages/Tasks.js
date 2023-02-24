@@ -5,8 +5,7 @@ export default function TasksPage() {
   const [error, setError] = useState("");
   const [name_task, setTask] = useState("");
   const [disabled, setDisabled] = useState(true);
-  const [tasks, addTask] = useState([]);
-  const [allTasks, getTasks] = useState([{}]);
+  const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
     loadTasks();
@@ -15,25 +14,21 @@ export default function TasksPage() {
   async function loadTasks() {
     try {
       const { data } = await api.get("/tasks");
-      getTasks(data);
+      setTasks(data);
     } catch (err) {
       setError("Bad Request");
     }
   }
 
   const handleRemove = async (id) => {
-    console.log(id)
-    // let reduceTodoTasks = [...allTasks];
-    // console.log(reduceTodoTasks)
-    // reduceTodoTasks.splice(id)
-    // console.log(reduceTodoTasks)
-
-    // getTasks(reduceTodoTasks);
-
     try {
-      const { data } = await api.delete("/tasks/:id", { id });
+      await api.delete(`/tasks/${id}`);
 
-      getTasks(data);
+      const newArrayWithoutTask = tasks.filter((task) => {
+        return task.task_id !== id;
+      });
+
+      setTasks(newArrayWithoutTask);
     } catch (err) {
       setError("Bad Request");
     }
@@ -44,7 +39,7 @@ export default function TasksPage() {
     try {
       const { data } = await api.post("/tasks", { name_task });
 
-      addTask([...tasks, data]);
+      setTasks([...tasks, data]);
     } catch (err) {
       setError("Dados inválidos");
     }
@@ -96,31 +91,22 @@ export default function TasksPage() {
           </button>
         </section>
         <section>
-          {/* <div> */}
           {tasks.map((task) => {
             return (
               <div className="tasks-container">
-                <p className="p-addtask" key={task.id}>
+                <p className="p-addtask" key={task.task_id}>
                   {task.name_task}
                 </p>
                 <button
                   type="button"
                   className="btn-excluir"
-                  onClick={() => handleRemove(task.id)}
+                  onClick={() => handleRemove(task.task_id)}
                 >
                   excluir
                 </button>
               </div>
             );
           })}
-          {/* </div> */}
-          {/* <button className="btn-excluir">excluir</button> */}
-          {/* <section className="alltasks-container">
-            {allTasks.map((task) => {
-              return <p>{task.name_task}</p>;
-            })}
-           
-          </section> */}
         </section>
       </section>
       <section>{error && <p className="erroDeDados">{error}</p>}</section>

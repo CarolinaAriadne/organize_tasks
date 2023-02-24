@@ -44,6 +44,7 @@ const updateTask = async (req, res, next) => {
 const deleteTask = async (req, res, next) => {
   try {
     const { id } = req.params;
+    console.log(id);
     await serviceTask.deleteTask(id);
     return res.status(204).end();
   } catch (error) {

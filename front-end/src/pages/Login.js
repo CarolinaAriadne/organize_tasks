@@ -18,7 +18,6 @@ export default function LoginPage() {
     try {
       const { data } = await api.post("/login", { email, password });
       if (data.token) {
-        // console.log(data.token);
         localStorage.setItem("user", JSON.stringify(data));
         navigate("/tasks");
       }

@@ -65,7 +65,7 @@ export default function TasksPage() {
         rel="stylesheet"
       />
       <header>
-        <h1 className="h1Task">Minhas tarefas</h1>
+        <h1 className="h1Task">Jobs</h1>
       </header>
       <section className="container">
         <section className="container-new-task">

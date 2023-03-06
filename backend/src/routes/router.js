@@ -15,13 +15,15 @@ const {
   getAllUsers,
   getUserById,
   loginUser,
+  // loginUserRefreshToken,
   createUser,
   assignmentTask,
 } = require("../controllers/controllerUser");
 
-router.get("/users", verifyToken, getAllUsers);
+router.get("/users", getAllUsers);
 router.get("/users/:user_id", getUserById);
 router.post("/login", validateUserLogin, loginUser);
+// router.post("/refresh", verifyRefreshToken, loginUserRefreshToken);
 router.post("/register", validateDadosUser, createUser);
 router.post("/users-tasks", validateTaskForUser, assignmentTask);
 

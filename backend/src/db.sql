@@ -4,7 +4,7 @@ CREATE DATABASE IF NOT EXISTS OrganizeTasks;
 
 CREATE TABLE OrganizeTasks.users(
     user_id INT PRIMARY KEY AUTO_INCREMENT,
-    name_user VARCHAR (30) NOT NULL
+    name_user VARCHAR (30) NOT NULL,
 );
 
 CREATE TABLE OrganizeTasks.tasks(

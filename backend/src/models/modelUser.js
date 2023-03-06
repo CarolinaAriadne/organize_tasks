@@ -2,7 +2,9 @@ const connection = require("./connection");
 
 const getAllUsers = async () => {
   const query = "SELECT * FROM OrganizeTasks.users";
+  console.log(query);
   const [response] = await connection.execute(query);
+  console.log(response, 'aqui');
   return response;
 };
 
@@ -21,7 +23,9 @@ const getUserName = async (name_user) => {
 const userLogin = async (email, password) => {
   const query =
     "SELECT * FROM OrganizeTasks.users WHERE (email, password) = (?,?);";
+   
   const [response] = await connection.execute(query, [email, password]);
+  console.log(response, 'AQUI 2');
   return response;
 };
 

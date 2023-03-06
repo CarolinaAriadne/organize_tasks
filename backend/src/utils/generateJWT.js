@@ -8,10 +8,11 @@ const jwtConfig = {
 
 const generateJwt = (email) => {
     const token = jwt.sign({data: {email}}, process.env.JWT_SECRET, jwtConfig)
+    // const refreshToken = jwt.sign({token}, process.env.JWT_REFRESH_SECRET, jwtConfig)
 
     return token
-};
 
+}
 module.exports = {
     generateJwt
 };

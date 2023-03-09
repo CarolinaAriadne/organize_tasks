@@ -22,7 +22,7 @@ const {
 
 router.get("/users", getAllUsers);
 router.get("/users/:user_id", getUserById);
-router.post("/login", validateUserLogin, loginUser);
+router.post("/login", verifyToken, validateUserLogin, loginUser);
 // router.post("/refresh", verifyRefreshToken, loginUserRefreshToken);
 router.post("/register", validateDadosUser, createUser);
 router.post("/users-tasks", validateTaskForUser, assignmentTask);

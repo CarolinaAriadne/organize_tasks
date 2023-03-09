@@ -33,7 +33,7 @@ export default function LoginPage() {
       setError("");
     } else {
       setDisabled(true);
-      setDisabled("Dados inválidos");
+      setError("Dados inválidos");
     }
   };
 

@@ -1,4 +1,4 @@
-const serviceUsers = require("../services/serviceUser");
+const serviceUsers = require('../services/serviceUser');
 
 const getAllUsers = async (_req, res, next) => {
   try {
@@ -30,23 +30,13 @@ const loginUser = async (req, res, next) => {
   }
 };
 
-// const loginUserRefreshToken = async (req, res, next) => {
-//   try {
-//     const { refreshToken } = req.body;
-//     const token = await serviceUsers.userLogin(refreshToken);
-//     return res.status(200).json({ token }); // testar sem objeto se der erro
-//   } catch (error) {
-//     return next(error);
-//   }
-// }
-
 const createUser = async (req, res, next) => {
   try {
     const { name_user, password, email } = req.body;
     const createdUser = await serviceUsers.createUser(
       name_user,
       password,
-      email
+      email,
     );
     return res.status(200).json(createdUser);
   } catch (error) {
@@ -68,7 +58,6 @@ module.exports = {
   getAllUsers,
   getUserById,
   loginUser,
-  // loginUserRefreshToken,
   createUser,
   assignmentTask,
 };

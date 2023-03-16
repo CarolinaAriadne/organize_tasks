@@ -1,47 +1,49 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import api from "../services/api";
-import Input from "../components/Input";
-import ButtonSubmit from "../components/ButtonSubmit";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import api from '../services/api';
+import Input from '../components/Input';
+import ButtonSubmit from '../components/ButtonSubmit';
 
 export default function RegisterPage() {
-  const [error, setError] = useState("");
-  const [name_user, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [disabled, setDisabled] = useState("");
+  const [error, setError] = useState('');
+  const [name_user, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [disabled, setDisabled] = useState('');
 
   const navigate = useNavigate();
 
-  const handlerSubmit = async (event) => {
+  const handlerSubmit = async event => {
     event.preventDefault();
 
     try {
-      const { data } = await api.post("/register", {
+      const { data } = await api.post('/register', {
         name_user,
         email,
         password,
       });
       if (data.token) {
-        localStorage.setItem("user", JSON.stringify(data));
-        navigate("/tasks");
+        console.log(data.token);
+        localStorage.setItem('user', JSON.stringify(data));
+        navigate('/tasks');
       }
+      alert('Cadastro realizado com sucesso!')
     } catch (err) {
-      setError("Dados inválidos");
+      setError('Dados inválidos');
     }
   };
 
   const disableSubmit = () => {
     if (
-      typeof email === "string" &&
-      typeof password === "string" &&
-      typeof name_user === "string"
+      typeof email === 'string' &&
+      typeof password === 'string' &&
+      typeof name_user === 'string'
     ) {
       setDisabled(false);
-      setError("");
+      setError('');
     } else {
       setDisabled(true);
-      setDisabled("Dados inválidos");
+      setDisabled('Dados inválidos');
     }
   };
 

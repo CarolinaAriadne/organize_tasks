@@ -1,4 +1,4 @@
-const joi = require("joi");
+const joi = require('joi');
 
 const userValidate = joi.object({
   email: joi.string().required(),
@@ -10,11 +10,9 @@ const validateUserLogin = (req, res, next) => {
   const { error } = userValidate.validate({ email, password });
 
   if (error) {
-    return res
-      .status(400)
-      .json({
-        message: "Some required fields are missing or fields must be string",
-      });
+    return res.status(400).json({
+      message: 'Some required fields are missing or fields must be string',
+    });
   }
 
   next();
@@ -31,11 +29,9 @@ const validateDadosUser = (req, res, next) => {
   const { error } = dadosUser.validate({ name_user, password, email });
 
   if (error) {
-    return res
-      .status(400)
-      .json({
-        message: "Some required fields are missing or fields must be string",
-      });
+    return res.status(400).json({
+      message: 'Some required fields are missing or fields must be string',
+    });
   }
 
   next();
@@ -51,11 +47,9 @@ const validateTaskForUser = (req, res, next) => {
   const { error } = taskForUser.validate({ user_id, task_id });
 
   if (error) {
-    return res
-      .status(400)
-      .json({
-        message: "Some required fields are missing or fields must be string",
-      });
+    return res.status(400).json({
+      message: 'Some required fields are missing or fields must be string',
+    });
   }
 
   next();

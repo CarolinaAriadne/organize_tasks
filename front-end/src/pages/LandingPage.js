@@ -8,7 +8,5 @@ export default function LandingPage() {
     navigate('/login');
   }, []);
 
-  return (
-    <div />
-  );
+  return <div />;
 }

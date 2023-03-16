@@ -1,10 +1,10 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import LoginPage from "./pages/Login";
-import LandingPage from "./pages/LandingPage";
-import TasksPage from "./pages/Tasks";
-import RegisterPage from "./pages/Resgister";
-import styled from "styled-components";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import LoginPage from './pages/Login';
+import LandingPage from './pages/LandingPage';
+import TasksPage from './pages/Tasks';
+import RegisterPage from './pages/Resgister';
+import styled from 'styled-components';
 
 function App() {
   return (

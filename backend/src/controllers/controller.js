@@ -1,9 +1,8 @@
-const serviceTask = require("../services/service");
+const serviceTask = require('../services/service');
 
 const getAllTasks = async (_req, res, next) => {
   try {
     const allTasks = await serviceTask.getAllTasks();
-    // console.log(allTasks);
     return res.status(200).json(allTasks);
   } catch (error) {
     return next(error);

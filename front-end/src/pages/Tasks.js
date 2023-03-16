@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
-import api from "../services/api";
+import { useState, useEffect } from 'react';
+import api from '../services/api';
 
 export default function TasksPage() {
-  const [error, setError] = useState("");
-  const [name_task, setTask] = useState("");
+  const [error, setError] = useState('');
+  const [name_task, setTask] = useState('');
   const [disabled, setDisabled] = useState(true);
   const [tasks, setTasks] = useState([]);
 
@@ -13,46 +13,55 @@ export default function TasksPage() {
 
   async function loadTasks() {
     try {
-      const { data } = await api.get("/tasks");
+      const { data } = await api.get('/tasks');
       setTasks(data);
     } catch (err) {
-      setError("Bad Request");
+      setError('Bad Request');
     }
   }
 
-  const handleRemove = async (id) => {
+  const handleRemove = async id => {
+    const user = JSON.parse(localStorage.getItem('user'));
     try {
-      await api.delete(`/tasks/${id}`);
+      await api.delete(`/tasks/${id}`,  { headers: { Authorization: user.token } });
 
-      const newArrayWithoutTask = tasks.filter((task) => {
+      const newArrayWithoutTask = tasks.filter(task => {
         return task.task_id !== id;
       });
 
       setTasks(newArrayWithoutTask);
+      alert('Task deletada com sucesso')
     } catch (err) {
-      setError("Bad Request");
+      setError('Bad Request');
     }
   };
 
-  const onSubmit = async (event) => {
+  const onSubmit = async event => {
     event.preventDefault();
+    const user = JSON.parse(localStorage.getItem('user'));
     try {
-      const { data } = await api.post("/tasks", { name_task });
-
-      setTasks([...tasks, data]);
+      const { data } = await api.post(
+        '/tasks',
+        { name_task },
+        { headers: { Authorization: user.token } },
+      );
+      if (data) {
+        setTasks([...tasks, data]);
+        alert('Task criada com sucesso!');
+      }
     } catch (err) {
-      setError("Dados inválidos");
+      setError('Dados inválidos');
     }
   };
 
   const disableSubmit = () => {
-    if (typeof name_task === "string") {
-      console.log(name_task, "aqui3");
+    if (typeof name_task === 'string') {
+      console.log(name_task, 'aqui3');
       setDisabled(false);
-      setError("");
+      setError('');
     } else {
       setDisabled(true);
-      setDisabled("Dados inválidos");
+      setDisabled('Dados inválidos');
     }
   };
 
@@ -90,7 +99,7 @@ export default function TasksPage() {
           </button>
         </section>
         <section>
-          {tasks.map((task) => {
+          {tasks.map(task => {
             return (
               <div className="tasks-container">
                 <p className="p-addtask" key={task.task_id}>

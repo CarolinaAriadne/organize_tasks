@@ -2,19 +2,23 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 const jwtConfig = {
-    expiresIn:'60d',
-    algorithm: 'HS256',
+  expiresIn: '60d',
+  algorithm: 'HS256',
 };
 
-const generateJwt = (email) => {
-    const token = jwt.sign({data: {email}}, process.env.JWT_SECRET, jwtConfig)
-    // const refreshToken = jwt.sign({token}, process.env.JWT_REFRESH_SECRET, jwtConfig)
+const generateJwt = email => {
+  const token = jwt.sign(
+    { data: { email } },
+    process.env.JWT_SECRET,
+    jwtConfig,
+  );
 
-    return token
-
-}
+  return token;
+};
 module.exports = {
-    generateJwt
+  generateJwt,
 };
 
-// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoiam9hb0Bqb2FvLmNvbSJ9LCJpYXQiOjE2Njc2NTkzOTUsImV4cCI6MTY3Mjg0MzM5NX0.JHMkZhoKvwrk2s83RXIn-QFMD-W9Ow00A63RENRhkr8
+// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoibGFpc0BsYWlzLmNvbSJ9LCJpYXQiOjE2Nzg5ODAzNTIsImV4cCI6MTcxMDA4NDM1Mn0.tSuKFrRUl6Ib5cv5TPuCSGfrRGkPix8zgUCHiX3RbfI
+
+// token da Lais, lais@lais.com senha lala

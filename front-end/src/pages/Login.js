@@ -17,7 +17,7 @@ export default function LoginPage() {
     event.preventDefault();
     try {
       const { data } = await api.post("/login", { email, password });
-     console.log(data);
+      console.log(data);
       if (data.token) {
         localStorage.setItem("user", JSON.stringify(data));
         navigate("/tasks");

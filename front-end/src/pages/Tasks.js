@@ -70,7 +70,6 @@ export default function TasksPage() {
       <section className="container">
         <section className="container-new-task">
           <input
-            className="inputTask"
             placeholder="nova tarefa"
             name="task"
             type="text"

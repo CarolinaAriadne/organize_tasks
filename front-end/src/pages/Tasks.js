@@ -1,15 +1,18 @@
 import { useState, useEffect } from 'react';
 import api from '../services/api';
+import Modal from 'react-modal';
 
 export default function TasksPage() {
   const [error, setError] = useState('');
   const [name_task, setTask] = useState('');
   const [disabled, setDisabled] = useState(true);
   const [tasks, setTasks] = useState([]);
+  const [oneTask, setOneTask] = useState([{ task_id: 0, name_task: '' }]);
+  const [modalIsOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     loadTasks();
-  }, []);
+  }); // []
 
   async function loadTasks() {
     try {
@@ -54,6 +57,42 @@ export default function TasksPage() {
     } catch (err) {
       setError('Dados inválidos ou tarefa já criada');
     }
+  };
+
+  const getOneTask = async id => {
+    try {
+      let response = await api.get(`/tasks/${id}`);
+      setOneTask(response.data);
+      setTask(response.data[0].name_task);
+    } catch (err) {
+      setError('Bad Request');
+    }
+  };
+
+  const updateTask = async oneTask => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    let id = oneTask[0].task_id;
+    try {
+      await api.put(
+        `/tasks/${id}`,
+        { name_task },
+        { headers: { Authorization: user.token } },
+      );
+      alert('Sua mudança foi realizada com sucesso!');
+    } catch (err) {
+      setError('Bad Request');
+    }
+  };
+
+  const openModal = id => {
+    setIsOpen(true);
+
+    getOneTask(id);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+    setTask('');
   };
 
   const disableSubmit = () => {
@@ -114,13 +153,48 @@ export default function TasksPage() {
                 >
                   excluir
                 </button>
-                <button type="button" className="btn-excluir-edit">
+                <button
+                  type="button"
+                  className="btn-excluir-edit"
+                  onClick={() => openModal(task.task_id)}
+                >
                   editar
                 </button>
               </div>
             );
           })}
         </section>
+        <Modal
+          isOpen={modalIsOpen}
+          onRequestClose={closeModal}
+          overlayClassName="modal-overlay"
+          className="modal-content"
+        >
+          <input
+            className="inputModal"
+            placeholder="name_task"
+            name="name_task"
+            type="text"
+            onChange={({ target }) => setTask(target.value)}
+            value={name_task}
+            onKeyUp={disableSubmit}
+          ></input>
+          <button
+            className="btnSalvarVoltar"
+            type="button"
+            onClick={closeModal}
+          >
+            voltar
+          </button>
+          <button
+            className="btnSalvarVoltar"
+            type="submit"
+            disabled={disabled}
+            onClick={() => updateTask(oneTask)}
+          >
+            salvar
+          </button>
+        </Modal>
       </section>
       <section>{error && <p className="erroDeDados2">{error}</p>}</section>{' '}
     </form>

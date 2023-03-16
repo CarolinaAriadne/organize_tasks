@@ -23,14 +23,16 @@ export default function TasksPage() {
   const handleRemove = async id => {
     const user = JSON.parse(localStorage.getItem('user'));
     try {
-      await api.delete(`/tasks/${id}`,  { headers: { Authorization: user.token } });
+      await api.delete(`/tasks/${id}`, {
+        headers: { Authorization: user.token },
+      });
 
       const newArrayWithoutTask = tasks.filter(task => {
         return task.task_id !== id;
       });
 
       setTasks(newArrayWithoutTask);
-      alert('Task deletada com sucesso')
+      alert('Task deletada com sucesso');
     } catch (err) {
       setError('Bad Request');
     }
@@ -50,7 +52,7 @@ export default function TasksPage() {
         alert('Task criada com sucesso!');
       }
     } catch (err) {
-      setError('Dados inválidos');
+      setError('Dados inválidos ou tarefa já criada');
     }
   };
 
@@ -107,17 +109,20 @@ export default function TasksPage() {
                 </p>
                 <button
                   type="button"
-                  className="btn-excluir"
+                  className="btn-excluir-edit"
                   onClick={() => handleRemove(task.task_id)}
                 >
                   excluir
+                </button>
+                <button type="button" className="btn-excluir-edit">
+                  editar
                 </button>
               </div>
             );
           })}
         </section>
       </section>
-      <section>{error && <p className="erroDeDados">{error}</p>}</section>
+      <section>{error && <p className="erroDeDados2">{error}</p>}</section>{' '}
     </form>
   );
 }

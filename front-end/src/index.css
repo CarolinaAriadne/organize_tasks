@@ -1,15 +1,15 @@
-@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 body {
-  font-family: "Raleway", sans-serif;
-  background-image: url("../src/images/css-gradient-background.png");
+  font-family: 'Raleway', sans-serif;
+  background-image: url('../src/images/css-gradient-background.png');
   background-size: cover;
   display: flex;
   justify-content: center;
@@ -49,6 +49,7 @@ body {
   padding: 20px;
   text-align: center;
   padding-top: 50px;
+  font-size: 50px;
 }
 
 .container {
@@ -80,7 +81,7 @@ body {
 .tasks-container {
   display: flex;
   flex-direction: row;
-  justify-content:space-between;
+  justify-content: space-between;
   background-color: #fff;
   padding: 30px 20px;
   margin-top: 60px;
@@ -115,7 +116,7 @@ body {
   width: 80%;
 }
 
-.btn-excluir {
+.btn-excluir-edit {
   display: block;
   flex: 1;
   border-radius: 5px;
@@ -136,4 +137,14 @@ body {
   height: 0.5rem;
   border-radius: 0.8rem;
   margin-left: 15%;
+}
+
+.erroDeDados2 {
+  width: 100%;
+  height: 0.5rem;
+  border-radius: 0.8rem;
+  margin-top: 10px;
+  font-size: 19px;
+  color: aliceblue;
+  text-align: center;
 }

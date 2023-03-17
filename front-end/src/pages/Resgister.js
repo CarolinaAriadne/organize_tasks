@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import api from '../services/api';
 import Input from '../components/Input';
 import ButtonSubmit from '../components/ButtonSubmit';
+import Button from '../components/Button';
 
 export default function RegisterPage() {
   const [error, setError] = useState('');
@@ -23,11 +24,9 @@ export default function RegisterPage() {
         password,
       });
       if (data.token) {
-        console.log(data.token);
         localStorage.setItem('user', JSON.stringify(data));
-        navigate('/tasks');
       }
-      alert('Cadastro realizado com sucesso!')
+      alert('Cadastro realizado com sucesso!');
     } catch (err) {
       setError('Dados inválidos');
     }
@@ -89,6 +88,11 @@ export default function RegisterPage() {
           content="Cadastrar"
           disabled={disabled}
         ></ButtonSubmit>
+        <Button
+          type="button"
+          content="login"
+          onClick={() => navigate('/login')}
+        ></Button>
       </section>
       <section>{error && <p className="erroDeDados">{error}</p>}</section>
     </form>

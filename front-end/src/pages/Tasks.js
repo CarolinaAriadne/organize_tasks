@@ -12,7 +12,7 @@ export default function TasksPage() {
 
   useEffect(() => {
     loadTasks();
-  }); // []
+  });
 
   async function loadTasks() {
     try {

@@ -136,7 +136,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: thistle;
+  background-color: #20b2aa;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -154,7 +154,7 @@ body {
 
 .inputModal:focus {
   outline: none;
-  border-color: thistle;
+  border-color: #41b883;
 }
 
 .inputModal {
@@ -176,7 +176,7 @@ body {
   width: 100px;
   font-size: 1rem;
   border: none;
-  background-color: thistle;
+  background-color: #41b883;
   color: #fff;
   padding: 12px;
   margin-left: 12px;

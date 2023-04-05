@@ -1,4 +1,4 @@
-# CRUD FullStack - Organize Tasks
+# CRUD FullStack - É possível ler, criar, editar e deletas tarefas.
 
 ## Tecnologias e ferramentas utilizadas:
 

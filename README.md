@@ -14,4 +14,4 @@
 --------------------------------------------------------------------------
 
 ## FrontEnd
-### No diretório frontend, rodar os seguintes comandos, respectivamente: 1- npm install  2- npm start
+### No diretório front-end, rodar os seguintes comandos, respectivamente: 1- npm install  2- npm start

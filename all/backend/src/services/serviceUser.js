@@ -25,7 +25,6 @@ const getUserById = async user_id => {
 
 const userLogin = async (email, password) => {
   const user = await userModel.userLogin(email, password);
-  // console.log(user, 'USER NOT FOUND');
 
   if (user.length === 0) {
     throw erroHandler(404, 'Users not found');

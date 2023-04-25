@@ -48,6 +48,7 @@ const updateTask = async (task_id, name_task) => {
 
 const deleteTask = async task_id => {
   const task = await taskModel.getTaskById(task_id);
+  console.log(task, 'task service')
   if (task.length === 0) {
     throw erroHandler(404, 'Task not found');
   }

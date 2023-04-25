@@ -25,6 +25,7 @@ export default function TasksPage() {
 
   const handleRemove = async id => {
     const user = JSON.parse(localStorage.getItem('user'));
+    console.log(user, 'user front')
     try {
       await api.delete(`/tasks/${id}`, {
         headers: { Authorization: user.token },

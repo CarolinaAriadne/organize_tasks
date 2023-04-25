@@ -12,7 +12,6 @@ const generateJwt = email => {
     process.env.JWT_SECRET,
     jwtConfig,
   );
-
   return token;
 };
 module.exports = {

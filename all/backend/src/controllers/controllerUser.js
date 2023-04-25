@@ -23,6 +23,7 @@ const getUserById = async (req, res, next) => {
 const loginUser = async (req, res, next) => {
   try {
     const { email, password } = req.body;
+    console.log(email, password)
     const token = await serviceUsers.userLogin(email, password);
     return res.status(200).json({ token }); // testar sem objeto se der erro
   } catch (error) {

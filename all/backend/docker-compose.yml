@@ -4,7 +4,7 @@ services:
     container_name: mysql-container
     image: mysql:5.7
     environment:
-      MYSQL_ROOT_PASSWORD: 'my-secret-pwd'
+      MYSQL_ROOT_PASSWORD: 'senha-mysql'
     ports:
       # Garanta que não haverá conflitos de porta com um banco que esteja
       # rodando localmente

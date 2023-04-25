@@ -38,6 +38,7 @@ const updateTask = async (task_id, name_task) => {
 
 const deleteTask = async task_id => {
   const query = 'DELETE FROM tasks WHERE task_id = ?;';
+  console.log(query, 'query model')
   await connection.execute(query, [task_id]);
 };
 

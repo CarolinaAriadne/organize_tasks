@@ -15,3 +15,7 @@
 
 ## FrontEnd
 ### No diretório front-end, rodar os seguintes comandos, respectivamente: 1- npm install  2- npm start
+----------------------------------------------------------------------------------
+
+## Demonstração prática da aplicação:
+![tasks](https://user-images.githubusercontent.com/91351391/234971375-f15a8162-496b-43a3-9e60-58086fd2ec80.gif)
